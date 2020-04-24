@@ -12,7 +12,7 @@ for dirpath, dirnames, filenames in os.walk(input_dir):
         file_list.append(filename)
 
     for file in file_list:
-        file_path = os.path.join(dirpath, file)
+        file_path = os.path.join(dirpath, file).replace("\\", "/")
         file_path_list.append(file_path)
 
 # print(file_list)
