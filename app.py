@@ -48,5 +48,16 @@ def move_func(output):
         shutil.move(target, move_dir)
 
 
+def remove_func(output):
+    areSure = input("Are you sure to delete? Y/N: ")
+    if areSure == 'Y':
+        for target in output:
+            os.remove(target)
+            print(target + "    ## deleted.")
+    else:
+        print("Delete Canceled.")
+
+
 # copy_func(output)
-move_func(output)
+# move_func(output)
+remove_func(output)
