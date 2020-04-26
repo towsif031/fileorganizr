@@ -1,6 +1,7 @@
 import os
 import re
 import shutil
+from pathlib import Path
 
 
 def directory_spider(input_dir, file_pattern="", maxResults=50):
@@ -31,8 +32,21 @@ output = directory_spider(input_dir, file_pattern, maxResults)
 print("\n".join(output))
 
 
-trash_path = 'copy_dir'
-for target in output:
-    # trash_path = trash_dir + os.path.basename(target)
-    # shutil.copyfile(target, trash_path)
-    shutil.copy2(target, trash_path)
+def copy_func(output):
+    copy_dir = 'copy_dir'
+    for target in output:
+        # copy_dir = trash_dir + os.path.basename(target)
+        # shutil.copyfile(target, copy_dir)
+        shutil.copy2(target, copy_dir)
+
+
+def move_func(output):
+    move_dir = 'move_dir'
+    if not os.path.isdir(move_dir):
+        Path(move_dir).mkdir(parents=True, exist_ok=True)
+    for target in output:
+        shutil.move(target, move_dir)
+
+
+# copy_func(output)
+move_func(output)
